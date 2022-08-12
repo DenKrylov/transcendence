@@ -7,7 +7,7 @@ import { HeaderControl, HeaderLogo, HeaderWrapper, HeaderButton, HeaderUser } fr
 export const Header = () => {
 
 	const theme = useRecoilValue(getThemeState);
-	const location = useRecoilValue(locationState);
+	const [ location, setLocation ] = useRecoilState(locationState);
 	const [token, setToken ] = useRecoilState(tokenState);
 
 	return (
@@ -16,12 +16,12 @@ export const Header = () => {
 				Transcendence
 			</HeaderLogo>
 			<HeaderControl>
-				{(location === 'start' && token.length === 0) && <HeaderButton theme={theme} location={location} onClick={() => setToken('1')}>Login</HeaderButton> }
-				{(location === 'start'&& token.length !== 0) && <HeaderButton theme={theme} location={location}>Home</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location}>Chat</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location}>Game</HeaderButton>}
+				{token.length === 0 && <HeaderButton theme={theme} location={location} onClick={() => setToken('1')}>Login</HeaderButton> }
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('home')}>Home</HeaderButton>}
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('chat')}>Chat</HeaderButton>}
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('game')}>Game</HeaderButton>}
 				{token.length !== 0 
-					&& <HeaderUser>
+					&& <HeaderUser theme={theme}>
 						Monie
 						Foto
 						</HeaderUser>}

@@ -11,8 +11,6 @@ export const HeaderWrapper = styled.header<Props>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-left: 1rem;
-	padding-right: 1rem;
 	background: ${({theme}) => theme.backgroundNormal};
 `
 
@@ -29,7 +27,8 @@ export const HeaderLink = styled.a<Props>`
 `;
 
 export const HeaderButton = styled.p<Props>`
-	margin-left: 1rem;
+	margin-left: .5rem;
+	margin-right: .5rem;
 	font-size: 1.5rem;
 	color: ${({theme}) => theme.foregroundPositive};
 	cursor: pointer;
@@ -38,6 +37,13 @@ export const HeaderButton = styled.p<Props>`
 	}
 `;
 
-export const HeaderUser = styled.div`
-
+export const HeaderUser = styled.div<Props>`
+	margin-left: .5rem;
+	margin-right: .5rem;
+	font-size: 1.5rem;
+	color: ${({theme}) => theme.foregroundPositive};
+	cursor: pointer;
+	:hover {
+		color: ${({theme}) => theme.foregroundLink};
+	}
 `;
