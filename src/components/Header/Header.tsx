@@ -3,7 +3,7 @@ import { locationState } from "../../recoil/Location/Location";
 import { getThemeState } from "../../recoil/Theme/getTheme"
 import { tokenState } from "../../recoil/Token/Token";
 import { userState } from "../../recoil/User/User";
-import { HeaderControl, HeaderLogo, HeaderWrapper, HeaderButton, HeaderUser } from "./HeaderStyle"
+import { HeaderControl, HeaderLogo, HeaderWrapper, HeaderButton } from "./HeaderStyle"
 
 export const Header = () => {
 

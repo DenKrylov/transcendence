@@ -8,7 +8,10 @@ interface Props {
   heightDialogs?: number;
   who?: boolean;
   vieweScroll?: boolean;
+  active?: boolean;
 }
+
+const leta = 'rgba(0, 0, 0, .7)';
 
 export const ChatWrapper = styled.article`
   display: grid;
@@ -27,10 +30,13 @@ export const ChatList = styled.div<Props>`
   grid-template-columns: 4rem 1fr;
   height: 4rem;
   border-radius: .3rem;
-  background: ${({theme}) => theme.backgroundNormal};
+  background: ${({theme, active}) => active ? 'rgba(0, 0, 0, .1)' : theme.backgroundNormal};
   margin: .1rem;
   padding: 1rem;
   cursor: pointer;
+  :hover {
+    background: rgba(0, 0, 0, .1);
+  }
 `;
 
 export const ChartListFoto = styled.div`
