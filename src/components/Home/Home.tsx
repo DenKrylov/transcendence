@@ -1,4 +1,4 @@
-import { StartWrappre, StartImg } from "./StartStyle"
+import { StartWrappre, StartImg } from "./HomeStyle"
 import logo from '../../img/logo.png'
 
 export const Start = () => {

@@ -4,7 +4,8 @@ import { getThemeState } from "../../recoil/Theme/getTheme";
 
 import { Chat } from "../Chat/Chat";
 import { Game } from "../Game/Game";
-import { Start } from "../Start/Start";
+import { Start } from "../Home/Home";
+import { User } from "../User/User";
 
 import { BodyWrapper } from "./BodyStyle"
 
@@ -18,6 +19,7 @@ export const Body = () => {
 			{location === 'home' && <Start />}
 			{location === 'chat' && <Chat />}
 			{location === 'game' && <Game />}
+			{location === 'user' && <User />}
 		</BodyWrapper>
 	)   
 }

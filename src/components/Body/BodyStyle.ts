@@ -8,4 +8,6 @@ interface Props {
 
 export const BodyWrapper = styled.section<Props>`
   background: ${({theme}) => theme.backgroundAlternate};
+  width: 100%;
+  height: 100%;
 `

@@ -21,9 +21,8 @@ export const Header = () => {
 				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('chat')}>Chat</HeaderButton>}
 				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('game')}>Game</HeaderButton>}
 				{token.length !== 0 
-					&& <HeaderUser theme={theme}>
+					&& <HeaderUser theme={theme} onClick={() => setLocation('user')}>
 						Monie
-						Foto
 						</HeaderUser>}
 			</HeaderControl>
 		</HeaderWrapper>

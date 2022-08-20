@@ -44,5 +44,35 @@ export const ChartListInfo = styled.div`
 
 export const ChatDialog = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
+export const Dialog = styled.div`
+  position: relative;
+  display: flex;
+`
+
+export const DialogAvatarka = styled.div`
+  background: black;
+  border-radius: 100%;
+`;
+
+export const DialogMessage = styled.div<Props>`
+  display: flex;
+  flex-direction: column;
+  background: ${({theme}) => theme.backgroundNormal};
+`;
+
+export const DialogUser = styled.div`
+
+`;
+
+export const DialogText = styled.div`
+
+`;
+
+
+export const ChatDialogInput = styled.div`
+  position: absolute;
+  bottom: 0;
+`;
