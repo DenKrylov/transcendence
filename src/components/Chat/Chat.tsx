@@ -1,8 +1,10 @@
 import { useRecoilValue } from "recoil";
+
 import { chatListsState } from "../../recoil/ChatLists/ChatLists";
 import { DialogListsState } from "../../recoil/DialogLists/DialogLists";
 import { getThemeState } from "../../recoil/Theme/getTheme";
-import { ChatDialog, ChatList, ChatLists, ChartListAva, ChatWrapper, Dialog, DialogAvatarka, DialogUser, DialogText, DialogMessage, ChatDialogInput } from "./ChatStyle"
+
+import { ChatDialog, ChatList, ChatLists, ChartListFoto, ChatWrapper, Dialog, DialogAvatarka, DialogUser, DialogText, DialogMessage, ChatDialogInput, ChatListName, ChatListLastMesseage, ChartListInfo, ChatDialogInputForm, ChatDialogInputEnter, ChatDialogInputSend } from "./ChatStyle"
 
 interface typeList {
   name: string,
@@ -28,9 +30,11 @@ export const Chat = () => {
       <ChatLists theme={theme}>
         { listChat.map((item: typeList) => (
           <ChatList key={item.id} theme={theme} onClick={() => console.log(item.id)}>
-            <ChartListAva></ChartListAva>
-            {item.name}
-            {item.lastMessage}
+            <ChartListFoto></ChartListFoto>
+            <ChartListInfo>
+              <ChatListName theme={theme}>{item.name}</ChatListName>
+              <ChatListLastMesseage theme={theme}>{item.lastMessage}</ChatListLastMesseage>
+            </ChartListInfo>
           </ChatList>
         ))}
       </ChatLists>
@@ -45,9 +49,11 @@ export const Chat = () => {
             { dialog.user === 'Monie' && <DialogAvatarka>{dialog.avatarka}</DialogAvatarka> }
           </Dialog>
         ))}
-        <ChatDialogInput>
-          <input type="text" />
-          <button>Sen</button>
+        <ChatDialogInput theme={theme}>
+          <ChatDialogInputForm id="chat_input">
+            <ChatDialogInputEnter theme={theme} type={"text"} name={"age"} />
+          </ChatDialogInputForm>
+          <ChatDialogInputSend theme={theme} type={"submit"} form={"test"} value={"SEND"} />
         </ChatDialogInput>
       </ChatDialog>
     </ChatWrapper>
