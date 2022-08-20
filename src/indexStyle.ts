@@ -47,6 +47,6 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
     display: grid;
-    grid-template-rows: 50px 1fr 30px;
+    grid-template-rows: 4rem 1fr 2rem;
   }
 `

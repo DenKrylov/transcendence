@@ -2,6 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil"
 import { locationState } from "../../recoil/Location/Location";
 import { getThemeState } from "../../recoil/Theme/getTheme"
 import { tokenState } from "../../recoil/Token/Token";
+import { userState } from "../../recoil/User/User";
 import { HeaderControl, HeaderLogo, HeaderWrapper, HeaderButton, HeaderUser } from "./HeaderStyle"
 
 export const Header = () => {
@@ -9,6 +10,7 @@ export const Header = () => {
 	const theme = useRecoilValue(getThemeState);
 	const [ location, setLocation ] = useRecoilState(locationState);
 	const [token, setToken ] = useRecoilState(tokenState);
+	const user = useRecoilValue(userState);
 
 	return (
 		<HeaderWrapper theme={theme}>
@@ -17,13 +19,10 @@ export const Header = () => {
 			</HeaderLogo>
 			<HeaderControl>
 				{token.length === 0 && <HeaderButton theme={theme} location={location} onClick={() => setToken('1')}>Login</HeaderButton> }
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('home')}>Home</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('chat')}>Chat</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} onClick={() => setLocation('game')}>Game</HeaderButton>}
-				{token.length !== 0 
-					&& <HeaderUser theme={theme} onClick={() => setLocation('user')}>
-						Monie
-						</HeaderUser>}
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'home' === location} onClick={() => setLocation('home')}>Home</HeaderButton>}
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'chat' === location} onClick={() => setLocation('chat')}>Chat</HeaderButton>}
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'game' === location} onClick={() => setLocation('game')}>Game</HeaderButton>}
+				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'user' === location} onClick={() => setLocation('user')}>{user.name}</HeaderButton>}
 			</HeaderControl>
 		</HeaderWrapper>
 	)

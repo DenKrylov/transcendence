@@ -5,6 +5,9 @@ import { Theme } from "../../indexStyle";
 interface Props {
 	theme?: Theme;
   width?: number;
+  heightDialogs?: number;
+  who?: boolean;
+  vieweScroll?: boolean;
 }
 
 export const ChatWrapper = styled.article`
@@ -16,7 +19,7 @@ export const ChatWrapper = styled.article`
 export const ChatLists = styled.div<Props>`
   display: flex;
   flex-direction: column;
-  border-right: 3px solid ${({theme}) => theme.backgroundNormal};;
+  border-right: 3px solid ${({theme}) => theme.backgroundNormal};
 `;
 
 export const ChatList = styled.div<Props>`
@@ -60,35 +63,65 @@ export const ChatDialog = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 1rem;
+  padding-left: 20vw;
+  padding-right: 20vw;
 `;
 
-export const Dialog = styled.div`
+export const Dialogs = styled.div<Props>`
+  height: ${({heightDialogs}) => heightDialogs}rem;
+  width: 100%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: ${({theme}) => theme.backgroundAlternate};
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: ${({theme, vieweScroll}) => vieweScroll ? theme.backgroundNormal : theme.backgroundAlternate};
+    cursor: pointer;
+  }
+`;
+
+export const Dialog = styled.div<Props>`
   position: relative;
   display: flex;
+  justify-content: ${({who}) => who ? 'flex-end' : 'flex-start'};
+  margin: .3rem;
 `
 
-export const DialogAvatarka = styled.div`
+export const DialogFoto = styled.div`
   background: black;
   border-radius: 100%;
+  margin-left: .3rem;
+  margin-right: .3rem;
+  height: 3rem;
+  width: 3rem;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
 `;
 
 export const DialogMessage = styled.div<Props>`
   display: flex;
   flex-direction: column;
   background: ${({theme}) => theme.backgroundNormal};
+  border-radius: ${({who}) => who ? '.3rem .3rem 0 .3rem' : '.3rem .3rem .3rem 0'};
+  padding: .3rem;
 `;
 
-export const DialogUser = styled.div`
-
+export const DialogUser = styled.div<Props>`
+  color: ${({who, theme}) => who ? theme.foregroundLink : theme.foregroundPositive};
 `;
 
 export const DialogText = styled.div`
-
+  color:  ${({theme}) => theme.foregroundNormal};
 `;
 
 export const ChatDialogInput = styled.div<Props>`
-  display: flex;
-	flex-direction: row;
+  display: grid;
+  grid-template-columns: 15fr 1fr;
+  width: 100%;
 	height: 5rem;
 	align-items: center;
 	border-top: 1px solid ${({theme}) => theme.backgroundNormal};
@@ -97,14 +130,14 @@ export const ChatDialogInput = styled.div<Props>`
 `;
 
 export const ChatDialogInputForm = styled.form`
+  width: 100%;
 `;
 
 export const ChatDialogInputEnter = styled.input<Props>`
-  display: flex;
 	height: 3rem;
-	width: 50vw;
-	margin: .5rem 0 .5rem 1rem;
-	padding: 0 0 0 .5rem;
+  width: 100%;
+	margin: .3rem 0 .3rem 1rem;
+	padding: 0 .3rem 0 .3rem;
 	box-sizing: border-box;
 	border-radius: .3rem 0 0 .3rem;
 	font-size: 1.5rem;
@@ -117,6 +150,8 @@ export const ChatDialogInputEnter = styled.input<Props>`
 export const ChatDialogInputSend = styled.input`
   display: flex;
   justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
 	height: 3rem;
 	width: 7rem;
 	margin: .5rem 1rem .5rem 0;

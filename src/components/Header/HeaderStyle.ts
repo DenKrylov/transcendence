@@ -5,6 +5,7 @@ import { Theme } from "../../indexStyle";
 interface Props {
 	theme?: Theme;
 	location?: string;
+	activePage?: boolean;
 }
 
 export const HeaderWrapper = styled.header<Props>`
@@ -33,7 +34,7 @@ export const HeaderButton = styled.p<Props>`
 	margin-right: .5rem;
 	font-size: 1.5rem;
 	font-weight: 700;
-	color: ${({theme}) => theme.foregroundPositive};
+	color: ${({theme, activePage}) => activePage ? theme.foregroundLink : theme.foregroundPositive};
 	cursor: pointer;
 	:hover {
 		color: ${({theme}) => theme.foregroundLink};
