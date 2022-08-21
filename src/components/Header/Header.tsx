@@ -1,30 +1,38 @@
+import { Link } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil"
-import { locationState } from "../../recoil/Location/Location";
+
 import { getThemeState } from "../../recoil/Theme/getTheme"
 import { tokenState } from "../../recoil/Token/Token";
 import { userState } from "../../recoil/User/User";
-import { HeaderControl, HeaderLogo, HeaderWrapper, HeaderButton } from "./HeaderStyle"
+
+import { 
+	HeaderControl,
+	HeaderLogo,
+	HeaderWrapper,
+	HeaderButton
+} from "./HeaderStyle"
 
 export const Header = () => {
 
 	const theme = useRecoilValue(getThemeState);
-	const [ location, setLocation ] = useRecoilState(locationState);
 	const [token, setToken ] = useRecoilState(tokenState);
 	const user = useRecoilValue(userState);
-
+	
 	return (
-		<HeaderWrapper theme={theme}>
-			<HeaderLogo theme={theme}>
-				Transcendence
-			</HeaderLogo>
-			<HeaderControl>
-				{token.length === 0 && <HeaderButton theme={theme} location={location} onClick={() => setToken('1')}>Login</HeaderButton> }
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'home' === location} onClick={() => setLocation('home')}>Home</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'chat' === location} onClick={() => setLocation('chat')}>Chat</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'game' === location} onClick={() => setLocation('game')}>Game</HeaderButton>}
-				{token.length !== 0 && <HeaderButton theme={theme} location={location} activePage={'user' === location} onClick={() => setLocation('user')}>{user.name}</HeaderButton>}
-			</HeaderControl>
-		</HeaderWrapper>
+		<>
+			<HeaderWrapper theme={theme}>
+				<HeaderLogo theme={theme}>
+					Transcendence
+				</HeaderLogo>
+				<HeaderControl>
+					{token.length === 0 && <Link to="/" onClick={() => setToken('1')}><HeaderButton theme={theme}>Login</HeaderButton></Link> }
+					{token.length !== 0 && <Link to="/home"><HeaderButton theme={theme} activePage={true}>Home</HeaderButton></Link>}
+					{token.length !== 0 && <Link to="/chat"><HeaderButton theme={theme}>Chat</HeaderButton></Link>}
+					{token.length !== 0 && <Link to="/game"><HeaderButton theme={theme}>Game</HeaderButton></Link>}
+					{token.length !== 0 && <Link to="/user"><HeaderButton theme={theme}>{user.name}</HeaderButton></Link>}
+				</HeaderControl>
+			</HeaderWrapper>
+		</>
 	)
 }
 

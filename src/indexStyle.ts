@@ -49,4 +49,8 @@ export const GlobalStyle = createGlobalStyle`
     display: grid;
     grid-template-rows: 4rem 1fr 2rem;
   }
+
+  a {
+    text-decoration: none;
+  }
 `

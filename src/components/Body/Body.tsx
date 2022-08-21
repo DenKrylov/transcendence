@@ -1,6 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { locationState } from "../../recoil/Location/Location";
 import { getThemeState } from "../../recoil/Theme/getTheme";
+import { tokenState } from "../../recoil/Token/Token";
 
 import { Chat } from "../Chat/Chat";
 import { Game } from "../Game/Game";
@@ -12,14 +13,20 @@ import { BodyWrapper } from "./BodyStyle"
 export const Body = () => {
 
 	const theme = useRecoilValue(getThemeState);
-	const location = useRecoilValue(locationState);
+	const token = useRecoilValue(tokenState);
 
 	return (
-		<BodyWrapper theme={theme}>
-			{location === 'home' && <Start />}
-			{location === 'chat' && <Chat />}
-			{location === 'game' && <Game />}
-			{location === 'user' && <User />}
-		</BodyWrapper>
+		<>
+			<BodyWrapper theme={theme}>
+				<Routes>
+					<Route path="/" element={<Start />}/>
+					{ token === '' ? <Route path="home" element={<Start />}/> : <Route path="home" element={<Start />}/>}
+					{ token !== '' ? <Route path="chat" element={<Chat />}/> : <Route path="home" element={<Start />}/>}
+					{ token !== '' ? <Route path="game" element={<Game />}/> : <Route path="home" element={<Start />}/>}
+					{ token !== '' ? <Route path="user" element={<User />}/> : <Route path="home" element={<Start />}/>}
+					<Route path="*" element={<Start />}/>
+				</Routes>
+			</BodyWrapper>
+		</>
 	)   
 }
