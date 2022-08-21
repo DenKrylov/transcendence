@@ -11,8 +11,6 @@ interface Props {
   active?: boolean;
 }
 
-const leta = 'rgba(0, 0, 0, .7)';
-
 export const ChatWrapper = styled.article`
   display: grid;
   grid-template-columns: 20rem 1fr;
